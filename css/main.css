@@ -1,0 +1,121 @@
+  .jumbotron{
+      margin-bottom:0;
+    }
+
+
+  li {
+  border-right: 1px solid #bbb;
+}
+
+li a:hover{
+  background-color: #D8D8D8;
+}
+
+#text1 {
+	background-color:#B8F5FD;
+}
+#text2 {
+	background-color:#80807E;
+}
+#text3 {
+	background-color:#F7F9BE;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 30px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Schriftarten */
+@font-face {
+  font-family: "Spirax-Regular";
+  src:  url("./fonts/Spirax-Regular.woff") format("woff"), /* Modern Browsers */
+        url("./fonts/Spirax-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Vivaldi W01 V2";
+  src: url("./fonts/vivaldi.woff2") format("woff2"), /* chrome、firefox */
+       url("./fonts/vivaldi.woff") format("woff"); /* chrome、firefox */
+  font-weight: normal;
+  font-style: normal;
+}
+.feedbackTitle {
+  font-family: 'Spirax-Regular';
+  font-size: 30px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  padding: 10px;
+}
+.titelUeberschrift {
+  font-family:"Vivaldi W01 V2";
+    font-size:100px;
+    color:white;
+    text-shadow: 2px 2px 4px #424242;
+    text-align:center;
+  }
+
+  .titelUeberschrift2 {
+    font-family:"Vivaldi W01 V2";
+      font-size:30px;
+      color:red;
+      text-shadow: 2px 2px 4px #424242;
+    }
+.mySlides {display:none;}
+
+#bla {
+  opacity: 0.5;
+}
+
+#bla:hover {
+  opacity: 1.0;
+}
+
+#impressumModal{
+    overflow-y: initial !important
+}
+
+#impressum-body{
+    height: 250px;
+    overflow-y: auto;
+}
+
+/*footer Kontakte*/
+#fuss {
+  background: #FCE6F2;
+  padding: 10px 0;
+}
+#fuss a {
+  color: #70726F;
+  font-size: 20px;
+  padding: 10px;
+  border-right: 1px solid #70726F;
+  transition: all .5s ease;
+}
+#fuss a:first-child {
+  border-left: 1px solid #70726F;
+}
+#fuss a:hover {
+  color: rgb(226, 32, 226);
+}
+
+
