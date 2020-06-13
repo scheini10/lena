@@ -43,10 +43,10 @@
      </head>
 <body data-spy='scroll' data-target='.navbar' data-offset='100'>
     <div class="jumbotron" style="background-color: #FCE6F2" id="anfang">
-	 <img src="./Bilder/LOGO3.jpg" alt="Chania" width="150" height="70" style="float: right;opacity: 0.5">
+	 <img src="./Bilder/LOGO.png" alt="Chania" width="150" height="70" style="float: right;opacity: 0.5">
     <div class="container-fluid" style="height:200px">
 
-    <!-- für Titelbereich wird ein SChriftzug eingeblendet dieser stammt aus der Javascriptbibliothek vara.js.
+    <!-- für Titelbereich wird ein Schriftzug eingeblendet dieser stammt aus der Javascriptbibliothek vara.js.
     Leider ist die Funktionalität, was Fonts und Zeichensätze betrifft, etwas eingeschränkt, 
     aber macht dennoch einen professionellen Eindruck-->
   
@@ -80,7 +80,7 @@
             <a class="nav-link" href="#text2">Produkt</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Feedback</a>
+            <a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Gästebuch</a>
           </li>
 		   <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#impressumModal">Impressum</a>
@@ -155,16 +155,16 @@
           geöffnet wird -->
           <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" >
               <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold feedbackTitle">Senden Sie uns Ihr Feedback</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body mx-5">
-                <div class="md-form mb-4" >
+              <div class="modal-body mx-3">
+                <div class="md-form mb-8" >
               <!--    <i class="fa fa-user prefix grey-text"></i>-->
                   <input type="text" id="feedbackName" class="form-control validate">
                   <label data-error="wrong" data-success="right" for="feedbackName">Ihr Name</label>
@@ -188,7 +188,30 @@
                   <label data-error="wrong" data-success="right" for="feedbackNachricht">Ihre Nachricht</label>
                 </div>
 
+                <div class="md-form">
+
+                  <div class="md-form mb-4 white black-text">
+                      <fieldset class="row black-text">
+                       <!-- <textarea type="text" id="feedbackOutput" class="md-textarea form-control" rows="4"></textarea>
+                        <label data-error="wrong" data-success="right" for="feedbackOutput">Output</label>-->
+                        <legend>Output</legend>
+      
+                          <!-- The ouput field-->
+                          <div id="output">
+                              <!-- This is where the messages go -->
+                              <p>no messages</p>
+                          </div>
+                          <input id="submit" class="btn green col s1 offset-s1" type="submit" value="send">
+                    <input id="reset" class="btn red col s1 offset-s1" type="reset" value="clear">
+
+                          
+      
+                      </fieldset>
+                  </div>
+                  </div>
+
               </div>
+             
 
             <!-- Buttons zum Schließen oder Senden der Feedback-Nachricht-->
               <div class="modal-footer">
@@ -271,7 +294,7 @@
           </li>
           <li>
             <p>
-              <a data-toggle="modal" data-target="#feedbackModal">FEEDBACK</a>
+              <a data-toggle="modal" data-target="#feedbackModal">GÄSTEBUCH</a>
             </p>
           </li>
           <li>
@@ -295,11 +318,11 @@
         <ul class="list-unstyled">
           <li>
             <p>
-              <i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+              <i class="fa fa-home mr-3"></i> Deggendorf, Straße 12, DE</p>
           </li>
           <li>
             <p>
-              <i class="fa fa-envelope mr-3"></i> info@example.com</p>
+              <i class="fa fa-envelope mr-3"></i> info@example.de</p>
           </li>
           <li>
             <p>
