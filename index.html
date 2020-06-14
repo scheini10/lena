@@ -12,8 +12,6 @@
         <script src="./src/vara.js" type="text/javascript"></script>
         <link rel="stylesheet" href="css/normalize.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
-       <!-- <link rel="stylesheet" href="css/skeleton.css"> -->
         <link rel="stylesheet" href="css/main.css">
         <script>
         /*JQuery-Funktionen, die die Label im Feedback-Formular ändern, wenn
@@ -25,6 +23,7 @@
         https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp */
 
         $(document).ready(function(){
+          $('#myAlert').hide();
             $("#feedbackModal").on('shown.bs.modal', function(){
               $("input").on("focusin", function() {
                 $(this).siblings("label").addClass("titelUeberschrift2");
@@ -42,8 +41,11 @@
           console.log("name");
 
           $("#sendenBtn").click(function () {
-            alert("hallo");
-            
+       
+            if ($('#feedbackName').val() != '' &&
+                $('#feedbackMail').val() != '' &&
+                $('#feedbackBetreff').val() != '' &&
+                $('#feedbackNachricht').val() != '') {
                 $.post("http://localhost:3000/gaestebuch",
                     {
                         id: -1,
@@ -54,12 +56,36 @@
                     writeOutput,
                     "json");
 
-                // disable the name field and clean the message field
-                //$("#feedbackName").prop('disabled', true);
+                // Die Felder werden nach dem POST-Request wieder mit Null initialisert
+                
                 $("#feedbackName").val("");
+                $("#feedbackMail").val("");
+                $("#feedbackBetreff").val("");
                 $("#feedbackNachricht").val("");
+                alert("halloooo");
+
+
+            } else {
+
+              $('#myAlert').show();
+              $("#sendenBtn").prop("disabled", true).removeClass('btn-primary').addClass('btn-secondary');
+              $("#feedbackName").prop("disabled", true);
+              $("#feedbackMail").prop("disabled", true);
+              $("#feedbackBetreff").prop("disabled", true);
+              $("#feedbackNachricht").prop("disabled", true);
+
+          };
           });
-          console.log(name);
+          //console.log(name); zw. Debugging
+          $("#fehlerBtn").click(function () {
+            $("#myAlert").hide();
+            $("#sendenBtn").prop("disabled", false).removeClass('btn-secondary').addClass('btn-primary');
+            $("#feedbackName").prop("disabled", false);
+            $("#feedbackMail").prop("disabled", false);
+            $("#feedbackBetreff").prop("disabled", false);
+            $("#feedbackNachricht").prop("disabled", false);
+        
+           });
         
      
                /**
@@ -69,7 +95,7 @@
                  */
                  function writeOutput(messages, status) {
 
-// check if the requeset was a success and the returned date is not null
+// check if the request was a success and the returned date is not null
 //if (status == 'success' && messages != null) {
 
     // clean the output field
@@ -78,18 +104,13 @@
     // looping over the messages
     messages.forEach( (msg) => {
 
-        // get the value of the name field
         const name = $("#feedbackName").val();
 
-        //const timeline1 = msg.time.substring(0,10)  ;
-        //const timeline2 =  msg.time.substring(12,8) ;
-
-        //Datum Bestimmen
+        //Datum Bestimmen; ein Substring aus der ISO-Zeit schlug immer fehl
         date = new Date(msg.time);
         year = date.getFullYear();
         month = date.getMonth()+1;
         dt = date.getDate();
-       // const e=date.time();
 
        if (dt < 10) {
       dt = '0' + dt;
@@ -100,7 +121,7 @@
 
       const timeline1 = (year+'-' + month + '-'+dt);
 
-        // build the HTML message string which is used for the message output
+        // Der HTML message String wird zusammengebaut
         const message_string =    `<ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             <i style="color:blue" >&#x21d2;</i>
@@ -109,19 +130,12 @@
                                         </li>
                                     </ul>`;
 
-        // write the final message string into the HTML-Tag with the ID output
+        // Der aktuellste Eintrag wird vorne eingefügt
         $("#output").prepend(message_string);
 
-    }); // end .forEach(...)
+    }); 
 
-//} else {
-
-    // send a error message to the user
-//    M.toast({html: status});
-
-//} // end if-else-body
-
-}; // end writeOutput(messages, status) {...}
+}; 
 
 });     
 		  
@@ -132,7 +146,7 @@
 	 <img src="./Bilder/LOGO.png" alt="Chania" width="150" height="70" style="float: right;opacity: 0.5">
     <div class="container-fluid" style="height:200px">
 
-    <!-- für Titelbereich wird ein Schriftzug eingeblendet dieser stammt aus der Javascriptbibliothek vara.js.
+    <!-- für Titelbereich wird ein Schriftzug eingeblendet; dieser stammt aus der Javascriptbibliothek vara.js.
     Leider ist die Funktionalität, was Fonts und Zeichensätze betrifft, etwas eingeschränkt, 
     aber macht dennoch einen professionellen Eindruck-->
   
@@ -239,8 +253,7 @@
 
     <!--  Modalfenster für Feedback mit Eingabe und Speichermöglichkeit, welches durch Anklicken der Registerkarte Feedback
           geöffnet wird -->
-          <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
+          <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content" >
               <div class="modal-header text-center">
@@ -251,60 +264,60 @@
               </div>
               <div class="modal-body mx-3">
                 <div class="md-form mb-8" >
-              <!--    <i class="fa fa-user prefix grey-text"></i>-->
                   <input type="text" id="feedbackName" class="form-control validate">
                   <label data-error="wrong" data-success="right" for="feedbackName">Ihr Name</label>
                 </div>
 
                 <div class="md-form mb-4">
-              <!--    <i class="fa fa-envelope prefix grey-text"></i>-->
                   <input type="email" id="feedbackMail" class="form-control validate">
                   <label data-error="wrong" data-success="right" for="feedbackMail">Ihre email</label>
                 </div>
 
                 <div class="md-form mb-4">
-              <!--    <i class="fa fa-tag prefix grey-text"></i>-->
-                  <input type="text" id="feedbackBetreff" class="form-control validate">
+                  <input type="text" id="feedbackBetreff" class="form-control validate" >
                   <label data-error="wrong" data-success="right" for="feedbackBetreff">Betreff</label>
                 </div>
 
                 <div class="md-form">
-              <!--    <i class="fa fa-pencil prefix grey-text"></i>-->
-                  <textarea type="text" id="feedbackNachricht" class="md-textarea form-control" rows="4"></textarea>
+                  <textarea type="text" id="feedbackNachricht" class="md-textarea form-control" rows="4" ></textarea>
                   <label data-error="wrong" data-success="right" for="feedbackNachricht">Ihre Nachricht</label>
                 </div>
+                <!-- Fehlercontainer, der eingeblendet wird, wenn die Daten für das Feedbackunvollständig sind -->
+                <div class="container" id="myAlert">
+                  <h4 class="feedbackTitle" style="color:rgb(67, 67, 170)">Bitte das Formular vollständig ausfüllen</h4>
+                  <button id = "fehlerBtn" type="button" class="btn btn-warning">Neu eingeben</button>
+                  <div class="alert alert-info">
+                Bitte fehlende Daten ergänzen.
+                  </div>
+                </div>
+
+            <!-- Buttons zum Schließen oder Senden der Feedback-Nachricht-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+              <button id = "sendenBtn" type="button" class="btn btn-primary">Senden</button>
+
+            </div>
 
                 <div class="md-form">
 
-                  <div class="md-form mb-4 white black-text">
+                  <div class="md-form mb-4 white black-text" >
                       <fieldset class="row black-text">
-                       <!-- <textarea type="text" id="feedbackOutput" class="md-textarea form-control" rows="4"></textarea>
-                        <label data-error="wrong" data-success="right" for="feedbackOutput">Output</label>-->
-                        <legend>Output</legend>
-      
-                          <!-- The ouput field-->
-                          <div id="output">
-                              <!-- This is where the messages go -->
-                              <p>no messages</p>
-                          </div>
-                                             
-      
+                      <legend>Übersicht der bisherigen Einträge</legend>
+                        <div id="output">
+                          <p>Keine Nachrichten</p>
+                        </div>
                       </fieldset>
-                  </div>
-                  </div>
+                   </div>
+                </div>
 
               </div>
              
 
-            <!-- Buttons zum Schließen oder Senden der Feedback-Nachricht data-dismiss="modal"-->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-                <button id = "sendenBtn" type="button" class="btn btn-primary">Senden</button>
 
-              </div>
-            </div>
+             </div>
           </div>
         </div>
+
 
     <!--  Modalfenster für Impressum, welches durch Anklicken der Registerkarte Impressumm
           geöffnet wird -->
@@ -395,7 +408,7 @@
       <!-- Grid column -->
       <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
 
-        <!-- Contact details -->
+        <!-- Kontaktangaben -->
         <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
 
         <ul class="list-unstyled">
@@ -421,31 +434,6 @@
       <!-- Grid column -->
 
       <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column
-      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
-
-       Social buttons
-        <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
-
-       Facebook
-        <a class="btn-floating btn-lg btn-fb" type="button" role="button"><i class="fab fa-facebook-f"></i></a>
-       Twitter
-        <a type="button" class="btn-floating btn-tw">
-          <i class="fa fa-twitter"></i>
-        </a>
-       Google +
-               <a type="button" class="btn-floating btn-gplus">
-          <i class="fa fa-google-plus-g"></i>
-        </a>
-       Dribbble 
-        <a type="button" class="btn-floating btn-dribbble">
-          <i class="fa fa-dribbble"></i>
-        </a>
-
-      </div>
-       Grid column -->
-
        <div id = "fuss" class="col-md-2 col-lg-2 text-center mx-auto my-4">
         <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
         <a href="#"><i class="fa fa-facebook" title="facebook"></i></a>
