@@ -38,7 +38,7 @@
               $(this).siblings("label").removeClass("titelUeberschrift2");
           });
           });
-          console.log("name");
+          //console.log("name"); Debugging
 
           $("#sendenBtn").click(function () {
        
@@ -62,7 +62,7 @@
                 $("#feedbackMail").val("");
                 $("#feedbackBetreff").val("");
                 $("#feedbackNachricht").val("");
-                alert("halloooo");
+                //alert("halloooo"); für Debugging
 
 
             } else {
@@ -86,61 +86,65 @@
             $("#feedbackNachricht").prop("disabled", false);
         
            });
-        
+        //JS script
+$('#externalJS').on('click', function(e){
+  e.preventDefault();
+  $('#feedbackModalejs').modal('show').find('.modal-body').load($(this).attr('href'));
+});
      
-               /**
-                 * Function which checks the response of the server and 
-                 * write the messages to the output field.
-                 * @param messages Array containing the messages sent by the server.
-                 */
-                 function writeOutput(messages, status) {
+/**
+ * Function which checks the response of the server and 
+ * write the messages to the output field.
+ * @param messages Array containing the messages sent by the server.
+ */
+  function writeOutput(messages, status) {
 
-// check if the request was a success and the returned date is not null
-//if (status == 'success' && messages != null) {
+    // check if the request was a success and the returned date is not null
+    if (status == 'success' && messages != null) {
 
-    // clean the output field
-    $("#output").html("");
+        // clean the output field
+          $("#output").html("");
 
-    // looping over the messages
-    messages.forEach( (msg) => {
+          // looping over the messages
+          messages.forEach( (msg) => {
 
-        const name = $("#feedbackName").val();
+            // const name = $("#feedbackName").val();
 
-        //Datum Bestimmen; ein Substring aus der ISO-Zeit schlug immer fehl
-        date = new Date(msg.time);
-        year = date.getFullYear();
-        month = date.getMonth()+1;
-        dt = date.getDate();
+            //Datum Bestimmen; ein Substring aus der ISO-Zeit schlug immer fehl
+            date = new Date(msg.time);
+            year = date.getFullYear();
+            month = date.getMonth()+1;
+            dt = date.getDate();
 
-       if (dt < 10) {
-      dt = '0' + dt;
-                    }
-      if (month < 10) {
-      month = '0' + month;
-                      }
+            if (dt < 10) {
+              dt = '0' + dt;
+            }
+            if (month < 10) {
+              month = '0' + month;
+            }
 
-      const timeline1 = (year+'-' + month + '-'+dt);
+            const timeline1 = (year+'-' + month + '-'+dt);
 
-        // Der HTML message String wird zusammengebaut
-        const message_string =    `<ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <i style="color:blue" >&#x21d2;</i>
-                                            <span class="title"><b>${msg.name} </b> am: ${timeline1}</span>
-                                            <p>${msg.message}</p>
-                                        </li>
-                                    </ul>`;
+              // Der HTML message String wird zusammengebaut 
+            const message_string =    `<ul class="list-group list-group-flush">
+                                              <li class="list-group-item">
+                                                  <i style="color:blue" >&#x21d2;</i>
+                                                  <span class="title"><b>${msg.name} </b> am: ${timeline1}</span>
+                                                  <p>${msg.message}</p>
+                                              </li>
+                                          </ul>`;
 
-        // Der aktuellste Eintrag wird vorne eingefügt
-        $("#output").prepend(message_string);
+            // Der aktuellste Eintrag wird vorne eingefügt
+            $("#output").prepend(message_string);
 
-    }); 
-
-}; 
-
+          }); 
+    } 
+  }
 });     
 		  
 		</script>
      </head>
+     <!--für Header wird auch ein Logo eingefügt-->
 <body data-spy='scroll' data-target='.navbar' data-offset='100'>
     <div class="jumbotron" style="background-color: #FCE6F2" id="anfang">
 	 <img src="./Bilder/LOGO.png" alt="Chania" width="150" height="70" style="float: right;opacity: 0.5">
@@ -156,14 +160,16 @@
   </div>
         <script src="./src/vara.js"></script>
         <script>
-              var vara = new Vara("#versuch","https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",[{
-              text:"Die handwerkliche Kunst der stilvollen Schriften!",
-              textAlign:"center",
-              strokeWidth:1.5,
-              duration:2000,
-              }],{
-              fontSize:38
-            });
+              var vara = new Vara("#versuch","https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
+                                [{
+                                  text:"Die handwerkliche Kunst der stilvollen Schriften!",
+                                  textAlign:"center",
+                                  strokeWidth:1.5,
+                                  duration:2000,
+                                }],
+                                {
+                                  fontSize:38
+                                });
         </script>
       
     
@@ -180,14 +186,15 @@
             <a class="nav-link" href="#text2">Produkt</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Gästebuch</a>
+            <!--<a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Gästebuch</a-->
+            <a class="nav-link" id="externalEJS" href="http://localhost:3000">Gästebuch</a>
           </li>
 		   <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#impressumModal">Impressum</a>
           </li>
          </ul>
       </nav>
-
+<!--2 Bilder angeordnet auf 2 Spalten, mit einer Mainspalte-->
     <div id="text1" class="container-fluid " style="color: #4C4C4C; padding-top:150px;padding-bottom:150px">
        <div class="row">
   <div class="column side">
@@ -208,7 +215,7 @@
 </div>
 
     </div>
-
+<!--1 Spalte mit rechts angeordnetem Bild-->
     <div id="text2" class="container-fluid text-white" style="padding-top:150px;padding-bottom:150px">
 	<div class="row">
          <div class="column middle">
@@ -269,7 +276,7 @@
                 </div>
 
                 <div class="md-form mb-4">
-                  <input type="email" id="feedbackMail" class="form-control validate">
+                  <input type="text" id="feedbackMail" class="form-control validate">
                   <label data-error="wrong" data-success="right" for="feedbackMail">Ihre email</label>
                 </div>
 
@@ -284,12 +291,13 @@
                 </div>
                 <!-- Fehlercontainer, der eingeblendet wird, wenn die Daten für das Feedbackunvollständig sind -->
                 <div class="container" id="myAlert">
-                  <h4 class="feedbackTitle" style="color:rgb(67, 67, 170)">Bitte das Formular vollständig ausfüllen</h4>
-                  <button id = "fehlerBtn" type="button" class="btn btn-warning">Neu eingeben</button>
-                  <div class="alert alert-info">
-                Bitte fehlende Daten ergänzen.
-                  </div>
-                </div>
+                  <h4 class="feedbackTitle" style="color:rgb(231, 103, 231)">Bitte das Formular vollständig ausfüllen</h4>
+                <button id = "fehlerBtn" type="button" class="btn btn-warning">Neu eingeben</button>
+                <!--ausgeblendet, weil derzeit nicht benötigt-->
+              <!--    <div class="alert alert-info">
+              //  Bitte fehlende Daten ergänzen.
+              //    </div>-->
+                </div>-
 
             <!-- Buttons zum Schließen oder Senden der Feedback-Nachricht-->
             <div class="modal-footer">
@@ -298,10 +306,11 @@
 
             </div>
 
-                <div class="md-form">
+
+                <div class="md-form ">
 
                   <div class="md-form mb-4 white black-text" >
-                      <fieldset class="row black-text">
+                      <fieldset class="row black-text scrollClass">
                       <legend>Übersicht der bisherigen Einträge</legend>
                         <div id="output">
                           <p>Keine Nachrichten</p>
