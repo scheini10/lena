@@ -1,48 +1,4 @@
-  .jumbotron{
-      margin-bottom:0;
-    }
-
-
-  li {
-  border-right: 1px solid #bbb;
-}
-
-li a:hover{
-  background-color: #D8D8D8;
-}
-
-#text1 {
-	background-color:#B8F5FD;
-}
-#text2 {
-	background-color:#80807E;
-}
-#text3 {
-	background-color:#F7F9BE;
-}
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 30px;
-}
-
-/* Left and right column */
-.column.side {
-  width: 25%;
-}
-
-/* Middle column */
-.column.middle {
-  width: 50%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
+  
 /* Schriftarten */
 @font-face {
   font-family: "Spirax-Regular";
@@ -59,11 +15,12 @@ li a:hover{
   font-weight: normal;
   font-style: normal;
 }
-.feedbackTitle {
+#feedbackTitle {
   font-family: 'Spirax-Regular';
   font-size: 30px;
+  font-weight: bold; 
   /*border: 1px solid #ddd;*/
-  display: inline-block;
+  /*display: inline-block;*/
   padding-top: 10px;
 }
 .titelUeberschrift {
@@ -80,79 +37,29 @@ li a:hover{
       color:red;
       text-shadow: 2px 2px 4px #424242;
     }
-.mySlides {display:none;}
-
-#bla {
-  opacity: 0.5;
-}
-
-#bla:hover {
-  opacity: 1.0;
-}
-
-#impressumModal{
-    overflow-y: initial !important
-}
-
-#impressum-body{
-    height: 250px;
-    overflow-y: auto;
-}
-
-/*footer Kontakte*/
-#fuss {
-  background: #FCE6F2;
-  padding: 10px 0;
-}
-#fuss a {
-  color: #70726F;
-  font-size: 20px;
-  padding: 10px;
-  border-right: 1px solid #70726F;
-  transition: all .5s ease;
-}
-#fuss a:first-child {
-  border-left: 1px solid #70726F;
-}
-#fuss a:hover {
-  color: rgb(226, 32, 226);
-}
-
 /*mit folgenden css-Anweisungen wechselt die Farbe in der Titel-div
 Quelle: https://1stwebdesigner.com/15-css-background-effects */
 
-.jumbotron {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	-webkit-animation: gradient 15s ease infinite;
-	        animation: gradient 15s ease infinite;
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-@-webkit-keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+@media screen and (max-width: 1024px){
+  img.bg {
+    left: 50%;
+    margin-left: -512px; }
 }
+#divtext { position: relative; width: 900px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
 
-.scrollClass {
-  height:180px;
-  overflow-y: scroll;
-}

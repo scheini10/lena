@@ -12,6 +12,7 @@ var app = express();
 
 // Express view engine mit ejs aktivieren und den Ordner views einbeziehen
 app.set("views", path.resolve(__dirname, "views"));
+
 app.set("view engine", "ejs");
 
 //app.use(express.static(__dirname + '/public'));

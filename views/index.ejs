@@ -1,7 +1,8 @@
 <% include header %>
 <% if (entries.length) { %>
     <% entries.forEach(function(entry) { %>
-        <div class="panel panel-default">
+        
+        <div class="panel panel-default" >
             <div class="panel-heading">
                 <div class="text-muted pull-right">
                     <%= entry.published %>
@@ -12,6 +13,7 @@
                 <%= entry.feedbackNachricht %>
             </div>
         </div>
+    
     <% }) %>
 <% } else { %>
     Keine Einträge! <a href="/neu">Erstellen Sie einen Eintrag!</a>
