@@ -40,14 +40,13 @@ app.get("/neu", function(req, res) {
 // Einträge werden auf Betreff und Inhalt überprüft, gepusht, wenn's passt,
 // und gleich angezeigt
 app.post("/neu", function(req, res) {
-    if (!req.body.title || !req.body.content) {
+    if (!req.body.title || !req.body.feedbackNachricht) {
         res.status(400).send("Einträge müssen einen Betreff und Inhalt haben.");
         return;
     }
     entries.push({
         title: req.body.title,
-        content: req.body.content,
-        testo: req.body.testo,
+        feedbackNachricht: req.body.feedbackNachricht,
         published: new Date()
     });
     res.redirect("/");

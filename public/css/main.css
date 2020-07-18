@@ -62,9 +62,9 @@ li a:hover{
 .feedbackTitle {
   font-family: 'Spirax-Regular';
   font-size: 30px;
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;*/
   display: inline-block;
-  padding: 10px;
+  padding-top: 10px;
 }
 .titelUeberschrift {
   font-family:"Vivaldi W01 V2";

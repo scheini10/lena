@@ -1,64 +1,35 @@
 <% include header %>
 
-<h2>Erstellen Sie einen neuen Eintrag</h2>
-
+<h2 class="font-weight-bold feedbackTitle"> Senden Sie uns Ihr Feedback</h2>
+<!--  Entscheidend ist der Gästebuchform die Mehode "post". Der Button senden führt einen Submit durch
+      und sendet die Daten an den Server ("server.js"), wo die Daten in einem Array durch push-Funktion
+      gespeichert werden. Die zuerst implementierte Modalform des Gästebucheintrags wurde wieder entfernt,
+      da dies zu Problemen geführt hat. Insbesondere kann durch den link auf den http://localhost:3000/neu das
+      Gästebuch in Modalform nicht mehr dargestellt werden. -->
 <form method="post" role="form">
-    <div class="form-group">
+    <div class="form-group" id="feedbackModal">
+        <input type="text" class="form-control" id="title" name="title" required>
         <label for="title">Betreff</label>
-
-        <input type="text" class="form-control" id="title" name="title" placeholder="Betreff" required>
     </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="feedbackName" name="anrede" required>
+        <label for="feedbackName">Ihr Name</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="feedbackMail" name="mail" required>
+        <label for="feedbackMail">Ihre Email</label>
+      </div>
+
     <div class="form-group">
-        <label for="content">Ihre Nachricht</label>
-        <textarea class="form-control" id="content" name="content" placeholder="Hinterlassen Sie Ihre Nachricht." rows="3" required>
-        </textarea>
+        <textarea class="form-control" id="feedbackNachricht" name="feedbackNachricht" placeholder="Hinterlassen Sie Ihre Nachricht." rows="3" required></textarea>
+        <label for="feedbackNachricht">Ihre Nachricht</label>
+        
     </div>
     <div class="form-group">
         <input type="submit" value="Senden" class="btn btn-primary">
     </div>
-<!--</form>-->
-<!-- Hier kommt der zong-->
-<div class="form-group" id="feedbackModal"></div>
-    <div class="modal-dialog modal-lg" role="dialog">
-      <div class="modal-content" >
-        <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold feedbackTitle">Senden Sie uns Ihr Feedback</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body mx-3">
-          <div class="md-form mb-8" >
-            <input type="text" id="feedbackName" class="form-control validate">
-            <label data-error="wrong" data-success="right" for="feedbackName">Ihr Name</label>
-          </div>
-
-          <div class="md-form mb-4">
-            <input type="text" id="feedbackMail" class="form-control validate">
-            <label data-error="wrong" data-success="right" for="feedbackMail">Ihre email</label>
-          </div>
-
-          <div class="md-form mb-4">
-            <input type="text" id="feedbackBetreff" class="form-control validate" >
-            <label data-error="wrong" data-success="right" for="feedbackBetreff">Betreff</label>
-          </div>
-
-          <div class="md-form">
-            <textarea type="text" id="feedbackNachricht" class="md-textarea form-control" rows="4" name="testo"></textarea>
-            <label data-error="wrong" data-success="right" for="feedbackNachricht" >Ihre Nachricht</label>
-          </div>
-      <!-- Buttons zum Schließen oder Senden der Feedback-Nachricht-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-        <!--button id = "sendenBtn" type="button" class="btn btn-primary">Senden</button-->
-        <input type="submit" value="Sanden" class="btn btn-primary">
-
-      </div>
-
-       </div>
-    </div>
-  </div>
-<!-- Hier endet der Zong -->
 </form>
 <script>
   /*JQuery-Funktionen, die die Label im Feedback-Formular ändern, wenn
@@ -70,20 +41,20 @@
   https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp */
   $(document).ready(function(){
     if($("#feedbackModal").is(":visible")){
-    $("input").on("focusin", function() {
-      $(this).siblings("label").addClass("titelUeberschrift2");
-  });
-  $("input").on("focusout", function() {
-      $(this).siblings("label").removeClass("titelUeberschrift2");
-  })
-  $("#feedbackNachricht").on("focusin", function() {
-    $(this).siblings("label").addClass("titelUeberschrift2");
-});
-$("#feedbackNachricht").on("focusout", function() {
-    $(this).siblings("label").removeClass("titelUeberschrift2");
-});
-}});
+      $("input").on("focusin", function() {
+        $(this).siblings("label").addClass("titelUeberschrift2");
+                                          });
+      $("input").on("focusout", function() {
+        $(this).siblings("label").removeClass("titelUeberschrift2");
+                                          })
+      $("#feedbackNachricht").on("focusin", function() {
+        $(this).siblings("label").addClass("titelUeberschrift2");
+                                                      });
+      $("#feedbackNachricht").on("focusout", function() {
+        $(this).siblings("label").removeClass("titelUeberschrift2");
+                                                        });
+                                          }});
 
           
-  </script>
-  <% include footer %>
+</script>
+<% include footer %>
