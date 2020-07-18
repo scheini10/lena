@@ -35,6 +35,7 @@ app.get("/", function(req, res) {
 // page 'neu' erzeugt neuen Eintrag im Gästebuch
 app.get("/neu", function(req, res) {
     res.render("neu");
+
 });
 
 // Einträge werden auf Betreff und Inhalt überprüft, gepusht, wenn's passt,

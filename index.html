@@ -187,7 +187,7 @@ $('#externalJS').on('click', function(e){
           </li>
           <li class="nav-item">
             <!--<a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Gästebuch</a-->
-            <a class="nav-link" id="externalEJS" href="http://localhost:3000">Gästebuch</a>
+            <a class="nav-link" id="externalEJS" href="http://localhost:3000" target="_blank">Gästebuch</a>
           </li>
 		   <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#impressumModal">Impressum</a>
@@ -248,85 +248,16 @@ $('#externalJS').on('click', function(e){
            <div class="carousel-item">
              <img class="d-block w-100" src="./Bilder/Calligraphy3.jpeg" alt="Dritte Folie">
            </div>
-         </div>
+         
          <div class="carousel-item">
            <img class="d-block w-100" src="./Bilder/Calligraphy4.jpeg" alt="Vierte Folie">
          </div>
          <div class="carousel-item">
            <img class="d-block w-100" src="./Bilder/Calligraphy5.jpg" alt="Fünfte Folie">
          </div>
+         </div>
        </div>
        </div>
-
-    <!--  Modalfenster für Feedback mit Eingabe und Speichermöglichkeit, welches durch Anklicken der Registerkarte Feedback
-          geöffnet wird -->
-          <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content" >
-              <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold feedbackTitle">Senden Sie uns Ihr Feedback</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body mx-3">
-                <div class="md-form mb-8" >
-                  <input type="text" id="feedbackName" class="form-control validate">
-                  <label data-error="wrong" data-success="right" for="feedbackName">Ihr Name</label>
-                </div>
-
-                <div class="md-form mb-4">
-                  <input type="text" id="feedbackMail" class="form-control validate">
-                  <label data-error="wrong" data-success="right" for="feedbackMail">Ihre email</label>
-                </div>
-
-                <div class="md-form mb-4">
-                  <input type="text" id="feedbackBetreff" class="form-control validate" >
-                  <label data-error="wrong" data-success="right" for="feedbackBetreff">Betreff</label>
-                </div>
-
-                <div class="md-form">
-                  <textarea type="text" id="feedbackNachricht" class="md-textarea form-control" rows="4" ></textarea>
-                  <label data-error="wrong" data-success="right" for="feedbackNachricht">Ihre Nachricht</label>
-                </div>
-                <!-- Fehlercontainer, der eingeblendet wird, wenn die Daten für das Feedbackunvollständig sind -->
-                <div class="container" id="myAlert">
-                  <h4 class="feedbackTitle" style="color:rgb(231, 103, 231)">Bitte das Formular vollständig ausfüllen</h4>
-                <button id = "fehlerBtn" type="button" class="btn btn-warning">Neu eingeben</button>
-                <!--ausgeblendet, weil derzeit nicht benötigt-->
-              <!--    <div class="alert alert-info">
-              //  Bitte fehlende Daten ergänzen.
-              //    </div>-->
-                </div>-
-
-            <!-- Buttons zum Schließen oder Senden der Feedback-Nachricht-->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-              <button id = "sendenBtn" type="button" class="btn btn-primary">Senden</button>
-
-            </div>
-
-
-                <div class="md-form ">
-
-                  <div class="md-form mb-4 white black-text" >
-                      <fieldset class="row black-text scrollClass">
-                      <legend>Übersicht der bisherigen Einträge</legend>
-                        <div id="output">
-                          <p>Keine Nachrichten</p>
-                        </div>
-                      </fieldset>
-                   </div>
-                </div>
-
-              </div>
-             
-
-
-             </div>
-          </div>
-        </div>
-
 
     <!--  Modalfenster für Impressum, welches durch Anklicken der Registerkarte Impressumm
           geöffnet wird -->
