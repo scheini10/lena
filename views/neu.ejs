@@ -41,7 +41,7 @@
   https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp */
   $(document).ready(function(){
     if($("#feedbackModal").is(":visible")){
-      $("input").on("focusin", function() {
+        $("input").on("focusin", function() {
         $(this).siblings("label").addClass("titelUeberschrift2");
                                           });
       $("input").on("focusout", function() {
@@ -50,7 +50,7 @@
       $("#feedbackNachricht").on("focusin", function() {
         $(this).siblings("label").addClass("titelUeberschrift2");
                                                       });
-      $("#feedbackNachricht").on("focusout", function() {
+      $("#feedbackNachricht").on("focusout mouseout", function() {
         $(this).siblings("label").removeClass("titelUeberschrift2");
                                                         });
                                           }});

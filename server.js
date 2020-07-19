@@ -49,7 +49,7 @@ app.post("/neu", function(req, res) {
     entries.push({
         title: req.body.title,
         feedbackNachricht: req.body.feedbackNachricht,
-        published: new Date()
+        published: datumdarsteller(new Date())
     });
     res.redirect("/");
 });
@@ -58,3 +58,20 @@ app.post("/neu", function(req, res) {
 http.createServer(app).listen(3000, function() {
     console.log("Gästebuch gestartet auf port 3000.");
 });
+//ein Substring aus der ISO-Zeit schlug immer fehl
+function datumdarsteller(datum){ 
+           //date = new Date(msg.time);
+           year = datum.getFullYear();
+           month = datum.getMonth()+1;
+           dt = datum.getDate();
+
+           if (dt < 10) {
+             dt = '0' + dt;
+           }
+           if (month < 10) {
+             month = '0' + month;
+           }
+            return year+'-' + month + '-'+dt + ' ' + datum.toLocaleTimeString();
+           //return (year+'-' + month + '-'+dt);
+        };
+           
